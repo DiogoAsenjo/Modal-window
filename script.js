@@ -15,7 +15,6 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
 //Usamos esse for loop para fazer o evento click funcionar em todos os botões. Queremos usar isso para abrir a modal window.
 for (let i = 0; i < btnsOpenModal.length; i++) {
   btnsOpenModal[i].addEventListener(`click`, function () {
-    console.log(`Button clicked`);
     modal.classList.remove(`hidden`); //Nessas duas linhas, estamos basicamente removendo a condição hidden da classe. Conforme pode ser visto no documento HTML, o texto da modal window já está lá, mas está escondido, nesse caso queremos que ele apreca quando clicado, por isso a remoção da condição de escondido.
     overlay.classList.remove(`hidden`);
   });
@@ -40,3 +39,11 @@ function closeModal() {
 
 btnCloseModal.addEventListener(`click`, closeModal); //Atenção para não chamar a função aqui (colocando os () no fim), se não a função será executada assim que o programa executar, nó só queremos que seja executada quando houver o click!
 overlay.addEventListener(`click`, closeModal);
+
+document.addEventListener(`keydown`, function (e) {
+  console.log(e.key);
+
+  if (e.key === `Escape` && !modal.classList.contains(`hidden`)) {
+    closeModal();
+  }
+});
